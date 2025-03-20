@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using _TestAmanotes.Script;
-using TestAmanotes.Tile;
+using TestAmanotes.Core;
 using UnityCommunity.UnitySingleton;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -40,7 +40,7 @@ namespace TestAmanotes
         {
             foreach (var pos in _cachedSpawnerPos)
             {
-                
+                return pos;
             }
             return Vector3.zero;
         }
@@ -69,21 +69,29 @@ namespace TestAmanotes
                         continue;
                     if (_db.IsTileSpawner(tile))
                     {
-                        _cachedSpawnerPos.Add(_gameTileMap.CellToWorld(cellPosition));
+                        _cachedSpawnerPos.Add(_gameTileMap.GetCellCenterWorld(cellPosition));
+                        SpawnTileNote(tile, cellPosition);
+
                     }
                     else if (_db.IsTileNormalNote(tile))
                     {
-                        var noteObj = Instantiate(_noteDb.GetObjectById(Define.AssestId.TileNotePosition), _gameTileMap.transform, true);
-                        var worldPos = _gameTileMap.GetCellCenterWorld(cellPosition);
-                        noteObj.transform.position = worldPos;
-                        TileNote tileNoteBehavior = noteObj.GetComponent<TileNote>();
-                        tileNoteBehavior.Setup(cellPosition);
+                        SpawnTileNote(tile, cellPosition);
                     }
                 }
             }
             
         }
 
+        private void SpawnTileNote(Tile tile, Vector3Int cellPosition)
+        {
+            var noteObj = Instantiate(_noteDb.GetObjectById(Define.AssestId.TileNotePosition), _gameTileMap.transform, true);
+            var worldPos = _gameTileMap.GetCellCenterWorld(cellPosition);
+            noteObj.transform.position = worldPos;
+            TileNote tileNoteBehavior = noteObj.GetComponent<TileNote>();
+            tileNoteBehavior.Setup(cellPosition);
+        }
+        
+        
         public void SpawnNote(Define.NoteType normal)
         {
             var pos = GetValidSpawnerPos(normal);

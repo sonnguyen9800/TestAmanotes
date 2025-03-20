@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace TestAmanotes.Tile
+namespace TestAmanotes.Core
 {
     [RequireComponent(typeof(Collider2D))]
     [RequireComponent(typeof(SpriteRenderer))]

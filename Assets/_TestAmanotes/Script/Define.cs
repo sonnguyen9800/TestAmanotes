@@ -11,5 +11,10 @@ namespace _TestAmanotes.Script
             public static int NoteLargeId = 202;
             public static int TileNotePosition = 301;
         }
+        public enum NoteType
+        {
+            Normal = 0,
+            Large = 1
+        }
     }
 }

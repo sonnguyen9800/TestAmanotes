@@ -15,7 +15,8 @@ namespace TestAmanotes
         [SerializeField] private NoteDatabase _noteDb;
 
         [SerializeField] private bool _setupOnAwake;
-        
+
+        [SerializeField] private ObjectPool _notePools;
         private HashSet<Vector3> _cachedSpawnerPos;
 
         private bool _didSetup = false;
@@ -35,7 +36,7 @@ namespace TestAmanotes
             _didSetup = true;
         }
 
-        public Vector3 GetValidSpawnerPos(Note notePrefab)
+        public Vector3 GetValidSpawnerPos(Define.NoteType type)
         {
             foreach (var pos in _cachedSpawnerPos)
             {
@@ -81,6 +82,18 @@ namespace TestAmanotes
                 }
             }
             
+        }
+
+        public void SpawnNote(Define.NoteType normal)
+        {
+            var pos = GetValidSpawnerPos(normal);
+            if (pos == Vector3.zero)
+            {
+                Debug.LogError("No valid slot to spawn");
+                return;
+            }
+
+            _notePools.SpawnFromPool(normal.ToString(), pos, Quaternion.identity);
         }
     }
 }

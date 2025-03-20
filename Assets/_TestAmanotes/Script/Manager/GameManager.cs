@@ -11,6 +11,7 @@ namespace TestAmanotes
         {
             DataHubManager.Instance.Setup();
             NoteSpawnerManager.Instance.Setup();
+            SongManager.Instance.Setup();
         }
         
         public int CalculateScore(Vector3 tapPos, float time)
@@ -28,6 +29,12 @@ namespace TestAmanotes
             if (distance < _gameConfig.ThresholdNormal)
                 return _gameConfig.NormalScore + BonusScore;
             return _gameConfig.BadScore + BonusScore;
+        }
+
+        public void StartGame()
+        {
+            SongManager.Instance.PlayGame();
+            NoteSpawnerManager.Instance.StartSpawn();
         }
     }
 }

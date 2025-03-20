@@ -1,6 +1,11 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using _TestAmanotes.Script;
+using Melanchall.DryWetMidi.Interaction;
+using Melanchall.DryWetMidi.MusicTheory;
 using TestAmanotes.Core;
+using Unity.VisualScripting;
 using UnityCommunity.UnitySingleton;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -9,6 +14,10 @@ namespace TestAmanotes
 {
     public class NoteSpawnerManager : MonoSingleton<NoteSpawnerManager>
     {
+        public Melanchall.DryWetMidi.MusicTheory.NoteName noteRestriction;
+
+        public List<double> timeStamps = new List<double>();
+
         [SerializeField] private Transform _gridTransform = null;
         [SerializeField] private Tilemap _gameTileMap;
 
@@ -21,9 +30,14 @@ namespace TestAmanotes
         [SerializeField] private NoteTapLine _tapLine;
         
         public Transform TapLineTransform {get => _tapLine.transform;}
-        private HashSet<Vector3> _cachedSpawnerPos;
+
+        [SerializeField]
+        public List<Vector3> SpawnerPos => _cachedSpawnerPos.ToList();
+
+        private HashSet<Vector3> _cachedSpawnerPos = new();
 
         private bool _didSetup = false;
+        private bool _start = false;
 
         protected override void Awake()
         {
@@ -95,7 +109,20 @@ namespace TestAmanotes
             tileNoteBehavior.Setup(cellPosition);
         }
         
-        
+        public void SetTimeStamps(Melanchall.DryWetMidi.Interaction.Note[] array)
+        {
+            foreach (var note in array)
+            {
+                var metricTimeSpan = TimeConverter.ConvertTo<MetricTimeSpan>(note.Time, SongManager.midiFile.GetTempoMap());
+                timeStamps.Add((double)metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds + (double)metricTimeSpan.Milliseconds / 1000f);
+                //
+                // if (note.NoteName == noteRestriction)
+                // {
+                //
+                // }
+         
+            }
+        }
         public void SpawnNote(Define.NoteType normal)
         {
             var pos = GetValidSpawnerPos(normal);
@@ -111,6 +138,31 @@ namespace TestAmanotes
         public void DestroyNote(GameObject otherGameObject)
         {
             _notePools.DespawnToPool(otherGameObject.tag, otherGameObject);
+        }
+        int spawnIndex = 0;
+
+        private void Update()
+        {
+            if (!_start)
+                return;
+            if (spawnIndex < timeStamps.Count)
+            {
+                if (SongManager.GetAudioSourceTime() >= timeStamps[spawnIndex] - SongManager.Instance.noteTime)
+                {
+                    SpawnNote(Define.NoteType.Normal);
+                    spawnIndex++;
+                }
+            }
+        }
+
+        public void StartSpawn()
+        {
+            _start = true;
+        }
+
+        public void StopSpawn()
+        {
+            _start = false;
         }
     }
 }

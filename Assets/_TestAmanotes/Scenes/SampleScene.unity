@@ -507,6 +507,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 899defec7e6142e7ad2f99c91835bff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noteRestriction: 2
+  timeStamps: []
   _gridTransform: {fileID: 137465410}
   _gameTileMap: {fileID: 2066764707}
   _db: {fileID: 11400000, guid: d6e498c944c85d04f9eafde214d584b1, type: 2}
@@ -570,10 +572,8 @@ MonoBehaviour:
   songDelayInSeconds: 0
   marginOfError: 0
   inputDelayInMilliseconds: 0
-  fileLocation: Chant.mid
-  noteTime: 0
-  noteSpawnY: 0
-  noteTapY: 0
+  fileLocation: chart_2.mid
+  noteTime: 1
 --- !u!82 &676897746
 AudioSource:
   m_ObjectHideFlags: 0
@@ -584,8 +584,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 93c4b3c489ebdb046b51c7fd67f646f4, type: 3}
-  m_Resource: {fileID: 8300000, guid: 93c4b3c489ebdb046b51c7fd67f646f4, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 4e61e3376146cda4ebaf9a5ef3bf7c78, type: 3}
+  m_Resource: {fileID: 8300000, guid: 4e61e3376146cda4ebaf9a5ef3bf7c78, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

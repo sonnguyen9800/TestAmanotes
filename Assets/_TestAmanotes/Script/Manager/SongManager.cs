@@ -20,7 +20,7 @@ public class SongManager : MonoSingleton<SongManager>
     
 
     public string fileLocation;
-    public float noteTime;
+    public float noteTime = 1;
     // public float noteSpawnY;
     // public float noteTapY;
     // public float noteDespawnY
@@ -34,7 +34,8 @@ public class SongManager : MonoSingleton<SongManager>
 
     public static MidiFile midiFile;
     // Start is called before the first frame update
-    void Start()
+
+    public void Setup()
     {
         ReadFromFile();
     }
@@ -45,15 +46,22 @@ public class SongManager : MonoSingleton<SongManager>
         midiFile = MidiFile.Read(Application.streamingAssetsPath + "/" + fileLocation);
         GetDataFromMidi();
     }
-    public void GetDataFromMidi()
+
+    private void GetDataFromMidi()
     {
         var notes = midiFile.GetNotes();
         var array = new Melanchall.DryWetMidi.Interaction.Note[notes.Count];
         notes.CopyTo(array, 0);
 
        // foreach (var lane in lanes) lane.SetTimeStamps(array);
+       NoteSpawnerManager.Instance.SetTimeStamps(array);
+        
+    }
 
+    public void PlayGame()
+    {
         Invoke(nameof(StartSong), songDelayInSeconds);
+
     }
     public void StartSong()
     {

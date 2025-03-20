@@ -7,7 +7,7 @@ namespace TestAmanotes
     {
         public void AddScore(int score)
         {
-            Debug.Log("Add score");
+            Debug.Log("Add score " + score);
         }
     }
 }

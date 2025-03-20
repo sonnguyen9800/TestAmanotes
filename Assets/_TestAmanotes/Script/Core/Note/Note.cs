@@ -8,10 +8,11 @@ namespace TestAmanotes
 {
     public class Note : MonoBehaviour, IPoolable
     {
+        [SerializeField] private GameConfigSO _config = null;
         [SerializeField] private GameObject[] _childNoteTiles;
-        public float fallSpeed = 5f; // Speed at which the object falls
         [SerializeField] private LayerMask _layerToTap;
 
+        private float _timeAtStart;
         private bool _runable;
         private bool _tapable;
         private bool _tapped;
@@ -40,6 +41,8 @@ namespace TestAmanotes
             
             _targetPos = transform.position;
             _targetPos.y = -10000;
+            _timeAtStart = 0;
+
         }
 
         public void OnObjectDisabled()
@@ -47,12 +50,13 @@ namespace TestAmanotes
             _runable = false;
             _tapable = false;
             _tapped = false;
+            _timeAtStart = 0;
         }
 
         private void FixedUpdate()
         {
             transform.position = Vector3.MoveTowards(transform.position, _targetPos,
-                fallSpeed * Time.deltaTime);
+                _config.NoteSpeed * Time.deltaTime);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -61,13 +65,9 @@ namespace TestAmanotes
             {
                 Debug.Log("Note is tappable");
                 _tapable = true;
+                _timeAtStart = Time.time;
             }
 
-        }
-
-        private int CalculateScore()
-        {
-            return 100;
         }
 
         public void OnTap()
@@ -77,9 +77,14 @@ namespace TestAmanotes
             _tapped = true;
             foreach (var note in _spriteRenderers)
             {
+                note.DOColor(Color.yellow, 0.2f);
                 note.DOFade(0, 0.2f);
+
             }
-            ScoreManager.Instance.AddScore(CalculateScore());
+
+            float currentTime = Time.time;
+            int score = GameManager.Instance.CalculateScore(gameObject.transform.position, currentTime - _timeAtStart);
+            ScoreManager.Instance.AddScore(score);
         }
         
         

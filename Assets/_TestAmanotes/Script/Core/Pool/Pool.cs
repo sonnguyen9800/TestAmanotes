@@ -42,7 +42,7 @@ namespace TestAmanotes
             }
         }
 
-        public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
+        public GameObject SpawnFromPool(string tag, Vector3 position, Transform parent,Quaternion rotation)
         {
             if (!poolDictionary.ContainsKey(tag))
             {
@@ -56,6 +56,7 @@ namespace TestAmanotes
             objectToSpawn.transform.position = position;
             objectToSpawn.transform.rotation = rotation;
 
+            objectToSpawn.transform.SetParent(parent);
             IPoolable pooledObj = objectToSpawn.GetComponent<IPoolable>();
             pooledObj?.OnObjectSpawn();
 

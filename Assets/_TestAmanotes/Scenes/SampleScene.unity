@@ -505,11 +505,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 899defec7e6142e7ad2f99c91835bff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gridTransform: {fileID: 137465410}
   _gameTileMap: {fileID: 2066764707}
   _db: {fileID: 11400000, guid: d6e498c944c85d04f9eafde214d584b1, type: 2}
   _noteDb: {fileID: 11400000, guid: 3f3d3a9d74f8d844a88f0fa3fa308187, type: 2}
   _setupOnAwake: 0
   _notePools: {fileID: 867107022}
+  _tapLine: {fileID: 1809073168}
 --- !u!4 &676897742
 Transform:
   m_ObjectHideFlags: 0
@@ -549,6 +551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c251586e35f24ad9a7335ea719cb63e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameConfig: {fileID: 11400000, guid: e573723cf8b819341be59735c898e995, type: 2}
 --- !u!1 &867107020
 GameObject:
   m_ObjectHideFlags: 0

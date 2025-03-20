@@ -178,7 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _childNoteTiles:
   - {fileID: 444760847319240070}
-  fallSpeed: 30
+  fallSpeed: 15
   _layerToTap:
     serializedVersion: 2
     m_Bits: 128

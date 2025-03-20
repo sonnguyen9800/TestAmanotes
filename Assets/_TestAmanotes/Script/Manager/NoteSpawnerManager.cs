@@ -9,6 +9,7 @@ namespace TestAmanotes
 {
     public class NoteSpawnerManager : MonoSingleton<NoteSpawnerManager>
     {
+        [SerializeField] private Transform _gridTransform = null;
         [SerializeField] private Tilemap _gameTileMap;
 
         [SerializeField] private NoteSpawnerDatabase _db;
@@ -17,6 +18,9 @@ namespace TestAmanotes
         [SerializeField] private bool _setupOnAwake;
 
         [SerializeField] private ObjectPool _notePools;
+        [SerializeField] private NoteTapLine _tapLine;
+        
+        public Transform TapLineTransform {get => _tapLine.transform;}
         private HashSet<Vector3> _cachedSpawnerPos;
 
         private bool _didSetup = false;
@@ -101,7 +105,7 @@ namespace TestAmanotes
                 return;
             }
 
-            _notePools.SpawnFromPool(normal.ToString(), pos, Quaternion.identity);
+            _notePools.SpawnFromPool(normal.ToString(), pos, _gridTransform, Quaternion.identity);
         }
 
         public void DestroyNote(GameObject otherGameObject)

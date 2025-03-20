@@ -18,6 +18,7 @@ namespace TestAmanotes
         private bool _tapped;
         private Vector3 _targetPos;
         private HashSet<SpriteRenderer> _spriteRenderers = new();
+        private double _timeInstantiated;
         private void Awake()
         {
             foreach (var note in _childNoteTiles)
@@ -42,6 +43,9 @@ namespace TestAmanotes
             _targetPos = transform.position;
             _targetPos.y = -10000;
             _timeAtStart = 0;
+            
+            _timeInstantiated = SongManager.GetAudioSourceTime();
+
 
         }
 
@@ -51,12 +55,18 @@ namespace TestAmanotes
             _tapable = false;
             _tapped = false;
             _timeAtStart = 0;
+            _timeInstantiated = 0;
         }
 
         private void FixedUpdate()
         {
-            transform.position = Vector3.MoveTowards(transform.position, _targetPos,
-                _config.NoteSpeed * Time.deltaTime);
+            double timeSinceInstantiated = SongManager.GetAudioSourceTime() - _timeInstantiated;
+            float t = (float)(timeSinceInstantiated / (SongManager.Instance.noteTime * 2));
+            transform.localPosition = Vector3.Lerp(Vector3.up * transform.position.y, 
+                Vector3.up * _targetPos.y, t); 
+
+            // transform.position = Vector3.MoveTowards(transform.position, _targetPos,
+            //     _config.NoteSpeed * Time.deltaTime);
         }
 
         private void OnTriggerEnter2D(Collider2D other)

@@ -103,5 +103,10 @@ namespace TestAmanotes
 
             _notePools.SpawnFromPool(normal.ToString(), pos, Quaternion.identity);
         }
+
+        public void DestroyNote(GameObject otherGameObject)
+        {
+            _notePools.DespawnToPool(otherGameObject.tag, otherGameObject);
+        }
     }
 }

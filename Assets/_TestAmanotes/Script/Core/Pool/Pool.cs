@@ -62,5 +62,19 @@ namespace TestAmanotes
             poolDictionary[tag].Enqueue(objectToSpawn);
             return objectToSpawn;
         }
+        
+        public void DespawnToPool(string tag, GameObject obj)
+        {
+            if (!poolDictionary.ContainsKey(tag))
+            {
+                Debug.LogWarning($"Pool with tag {tag} doesn't exist.");
+                return;
+            }
+
+            IPoolable pooledObj = obj.GetComponent<IPoolable>();
+            pooledObj.OnObjectDisabled();
+            obj.SetActive(false);
+            poolDictionary[tag].Enqueue(obj);
+        }
     }
 }

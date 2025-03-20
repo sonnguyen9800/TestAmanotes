@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 32
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d59e4d34be1e4751b1d6f58d14eb644a, type: 3}
+  m_Name: NoteSpawnerDB
+  m_EditorClassIdentifier: 
+  _data:
+  - Id: 0
+    Data:
+      TileRef: {fileID: 11400000, guid: e3f66684f4d75d246abed8eabfc9ed97, type: 2}

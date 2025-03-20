@@ -14,6 +14,7 @@ namespace TestAmanotes.Core
         private TileDataHub _hub;
         private bool _didSetup;
         private byte _id;
+        private Color _originColor;
         public void Setup(Vector3Int cellPosition)
         {
             cellPos = cellPosition;
@@ -24,6 +25,7 @@ namespace TestAmanotes.Core
                 Position = cellPos
             });
             _didSetup = true;
+            _originColor = _renderer.color;
         }
         public void SetColor(Color color)
         {
@@ -34,7 +36,9 @@ namespace TestAmanotes.Core
         {
             if (!_didSetup)
                 return;
-            SetColor(Color.green);
+            Color color = Color.green;
+            color.a = 0.3f;
+            SetColor(color);
             _hub.Edit(_id, item => item.IsPlaced, true);
         }
 
@@ -42,7 +46,7 @@ namespace TestAmanotes.Core
         {
             if (!_didSetup)
                 return;
-            SetColor(Color.white);
+            SetColor(_originColor);
             _hub.Edit(_id, item => item.IsPlaced, false);
 
         }

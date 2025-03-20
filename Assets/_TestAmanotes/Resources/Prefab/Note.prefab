@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4000320151031773903}
   - component: {fileID: 6753451942064973095}
   - component: {fileID: 1322055031516000054}
+  - component: {fileID: 265452132764005414}
   m_Layer: 6
   m_Name: Note
   m_TagString: Normal
@@ -31,7 +32,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.5, y: 36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -175,5 +176,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 825cab76055b8a146ab41a199a80d01a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _childNoteTiles: []
+  _childNoteTiles:
+  - {fileID: 444760847319240070}
   fallSpeed: 30
+  _layerToTap:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!114 &265452132764005414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 444760847319240070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e915670b4bfca364cbcb483c0ca6c50d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GestureStateUpdated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1322055031516000054}
+        m_TargetAssemblyTypeName: TestAmanotes.Note, Assembly-CSharp
+        m_MethodName: OnTap
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  GestureView: {fileID: 444760847319240070}
+  RestrictToGestureView: 0
+  MinimumNumberOfTouchesToTrack: 1
+  MaximumNumberOfTouchesToTrack: 1
+  AllowSimultaneousExecutionWith: []
+  AllowSimultaneousExecutionWithAllGestures: 0
+  RequireGestureRecognizersToFail: []
+  ClearTrackedTouchesOnEndOrFail: 0
+  Mask: {fileID: 0}
+  NumberOfTapsRequired: 1
+  ThresholdSeconds: 0.5
+  ThresholdUnits: 0.3
+  SequentialTapThresholdSeconds: 0.4
+  SendBeginState: 0

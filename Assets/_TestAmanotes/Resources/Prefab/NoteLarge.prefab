@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1884416911626660149}
   - component: {fileID: 8558643220023297250}
   - component: {fileID: 7921296619014997440}
+  - component: {fileID: 158877380561873542}
   m_Layer: 0
   m_Name: NoteLarge
   m_TagString: Large
@@ -94,8 +95,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 825cab76055b8a146ab41a199a80d01a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _childNoteTiles: []
-  fallSpeed: 5
+  _childNoteTiles:
+  - {fileID: 7508783982243035722}
+  - {fileID: 8393596639291548219}
+  - {fileID: 5767012353511498914}
+  fallSpeed: 43
+  _layerToTap:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!114 &158877380561873542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3464764227190627614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e915670b4bfca364cbcb483c0ca6c50d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GestureStateUpdated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7921296619014997440}
+        m_TargetAssemblyTypeName: TestAmanotes.Note, Assembly-CSharp
+        m_MethodName: OnTap
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  GestureView: {fileID: 0}
+  RestrictToGestureView: 0
+  MinimumNumberOfTouchesToTrack: 1
+  MaximumNumberOfTouchesToTrack: 1
+  AllowSimultaneousExecutionWith: []
+  AllowSimultaneousExecutionWithAllGestures: 0
+  RequireGestureRecognizersToFail: []
+  ClearTrackedTouchesOnEndOrFail: 0
+  Mask: {fileID: 0}
+  NumberOfTapsRequired: 1
+  ThresholdSeconds: 0.5
+  ThresholdUnits: 0.3
+  SequentialTapThresholdSeconds: 0.4
+  SendBeginState: 0
 --- !u!1 &5767012353511498914
 GameObject:
   m_ObjectHideFlags: 0

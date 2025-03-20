@@ -708,7 +708,7 @@ GameObject:
   - component: {fileID: 1809073166}
   - component: {fileID: 1809073167}
   - component: {fileID: 1809073168}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TapZoneCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1877,9 +1877,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileMap: {fileID: 2066764707}
-  _layerMask:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

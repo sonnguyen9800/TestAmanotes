@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65cc4fd229914ce6805b2d60c0e752ed, type: 3}
-  m_Name: New Note Database
+  m_Script: {fileID: 11500000, guid: d59e4d34be1e4751b1d6f58d14eb644a, type: 3}
+  m_Name: NoteSpawnerDB
   m_EditorClassIdentifier: 
   _data:
-  - Id: 201
+  - Id: 101
     Data:
-      Prefab: {fileID: 444760847319240070, guid: 778adcceadb1d364d9959985b88a2ff7, type: 3}
-  - Id: 202
+      TileRef: {fileID: 11400000, guid: e3f66684f4d75d246abed8eabfc9ed97, type: 2}
+  - Id: 301
     Data:
-      Prefab: {fileID: 3464764227190627614, guid: 35a56ce817444a84f98e3dbc0242b9cd, type: 3}
+      TileRef: {fileID: 11400000, guid: e00f392aeab51b14f83143ac9c0a71c8, type: 2}

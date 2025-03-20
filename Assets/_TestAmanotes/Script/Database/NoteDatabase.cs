@@ -3,7 +3,7 @@ using SisyphusFramework.ScriptableObject;
 using SisyphusFramework.Utils;
 using UnityEngine;
 
-namespace _TestAmanotes
+namespace TestAmanotes
 {
     [Serializable]
     public class NoteData
@@ -20,6 +20,9 @@ namespace _TestAmanotes
     [CreateAssetMenu(menuName = "Note DB")]
     public class NoteDatabase : AScriptableDatabase<NoteItem, NoteData>
     {
-        
+        public GameObject GetObjectById(int id)
+        {
+            return GetById(id).Prefab;
+        }
     }
 }

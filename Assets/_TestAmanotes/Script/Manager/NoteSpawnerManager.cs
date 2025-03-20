@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using _TestAmanotes.Script;
+using TestAmanotes.Tile;
 using UnityCommunity.UnitySingleton;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -74,6 +75,8 @@ namespace TestAmanotes
                         var noteObj = Instantiate(_noteDb.GetObjectById(Define.AssestId.TileNotePosition), _gameTileMap.transform, true);
                         var worldPos = _gameTileMap.GetCellCenterWorld(cellPosition);
                         noteObj.transform.position = worldPos;
+                        TileNote tileNoteBehavior = noteObj.GetComponent<TileNote>();
+                        tileNoteBehavior.Setup(cellPosition);
                     }
                 }
             }

@@ -570,6 +570,8 @@ GameObject:
   m_Component:
   - component: {fileID: 676897742}
   - component: {fileID: 676897741}
+  - component: {fileID: 676897743}
+  - component: {fileID: 676897744}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -592,7 +594,7 @@ MonoBehaviour:
   _gameTileMap: {fileID: 2066764707}
   _db: {fileID: 11400000, guid: d6e498c944c85d04f9eafde214d584b1, type: 2}
   _noteDb: {fileID: 11400000, guid: 3f3d3a9d74f8d844a88f0fa3fa308187, type: 2}
-  _setupOnAwake: 1
+  _setupOnAwake: 0
 --- !u!4 &676897742
 Transform:
   m_ObjectHideFlags: 0
@@ -608,6 +610,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &676897743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676897740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0526546ab96840279813d1d0cddba81a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &676897744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676897740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c251586e35f24ad9a7335ea719cb63e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1028237179
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using NTC.Pool;
 using UnityEngine;
 
 namespace TestAmanotes
@@ -41,7 +42,7 @@ namespace TestAmanotes
            // OnObjectSpawn();
         }
 
-        public void OnObjectSpawn()
+        private void OnObjectSpawn()
         {
             _runable = true;
             _tapable = false;
@@ -64,7 +65,7 @@ namespace TestAmanotes
             
         }
 
-        public void OnObjectDisabled()
+        private void OnObjectDisabled()
         {
             _runable = false;
             _tapable = false;
@@ -149,8 +150,17 @@ namespace TestAmanotes
             int score = GameManager.Instance.CalculateScore(gameObject.transform.position, currentTime - _timeAtStart);
             ScoreManager.Instance.AddScore(score);
         }
-        
-        
+
+
+        public void OnSpawn()
+        {
+            OnObjectSpawn();
+        }
+
+        public void OnDespawn()
+        {
+            OnObjectDisabled();
+        }
     }
 
 }

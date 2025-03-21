@@ -681,6 +681,7 @@ GameObject:
   m_Component:
   - component: {fileID: 867107021}
   - component: {fileID: 867107022}
+  - component: {fileID: 867107023}
   m_Layer: 0
   m_Name: PoolNote
   m_TagString: Untagged
@@ -722,6 +723,33 @@ MonoBehaviour:
   - tag: Large
     prefab: {fileID: 3464764227190627614, guid: 35a56ce817444a84f98e3dbc0242b9cd, type: 3}
     size: 10
+--- !u!114 &867107023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867107020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5dac5a9786b4db18d8ad4187d7245d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _updateType: 0
+  preloadPoolsType: 1
+  poolsPreset: {fileID: 0}
+  _behaviourOnCapacityReached: 2
+  _despawnType: 2
+  _callbacksType: 1
+  _capacity: 20
+  _dontDestroyOnLoad: 0
+  _sendWarnings: 1
+  _nightPoolMode: 0
+  _reactionOnRepeatedDelayedDespawn: 1
+  _despawnPersistentClonesOnDestroy: 1
+  _checkClonesForNull: 1
+  _checkForPrefab: 1
+  _clearEventsOnDestroy: 0
 --- !u!1 &1028237179
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using System.Linq;
 using _TestAmanotes.Script;
 using Melanchall.DryWetMidi.Interaction;
 using Melanchall.DryWetMidi.MusicTheory;
+using NTC.Pool;
 using TestAmanotes.Core;
 using UnityCommunity.UnitySingleton;
 using UnityEngine;
@@ -134,14 +135,18 @@ namespace TestAmanotes
                 return;
             }
 
-            //var prefab = _notePools.GetPrefabByTag(normal.ToString());
+            var prefab = _notePools.GetPrefabByTag(normal.ToString());
             //Instantiate(prefab, pos, Quaternion.identity, _gridTransform);
-            _notePools.SpawnFromPool(normal.ToString(), pos, _gridTransform, Quaternion.identity);
+            var go = NightPool.Spawn(prefab);
+            go.transform.position = pos;
+            go.transform.SetParent(_gridTransform);
         }
 
         public void DestroyNote(GameObject otherGameObject)
         {
-            _notePools.DespawnToPool(otherGameObject.tag, otherGameObject);
+            NightPool.Despawn(otherGameObject);
+            
+            //_notePools.DespawnToPool(otherGameObject.tag, otherGameObject);
         }
 
         private Dictionary<NoteName, int> _spawnedIndex= new();

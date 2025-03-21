@@ -84,4 +84,5 @@ Below are a gif to illustrate how gameplay takes place:
 - **SisyphusFramework**: Custom framework. Link https://github.com/sonnguyen9800/Sisyphus-UniFramework
   
 ## Platform Support
-The project is ensured to run on Unity Editor. Android or PC build is **not** tested!
+- The project is ensured to run on Unity Editor. Android or PC build is **not** tested!
+- The project is created in **Window 10**. Running on Mac may require some re-configuration. I don't have a *Mac* so I couldn't test properly.

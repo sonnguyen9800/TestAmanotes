@@ -136,7 +136,7 @@ namespace DigitalRubyShared
             // find a platform intersecting the player - you could also tag the platform object
             //  or put it in a different layer, I have chosen to look at the object name
             ContactFilter2D filter = new ContactFilter2D();
-            int count = playerBody.Overlap(filter, overlapArray);
+            int count = playerBody.OverlapCollider(filter, overlapArray);
             for (int i = 0; i < count; i++)
             {
                 if ((!string.IsNullOrEmpty(PlatformTag) && overlapArray[i].tag == PlatformTag) ||
@@ -172,9 +172,9 @@ namespace DigitalRubyShared
         {
             if (gesture.State == GestureRecognizerState.Executing)
             {
-                Vector2 velocity = playerBody.linearVelocity;
+                Vector2 velocity = playerBody.velocity;
                 velocity.x += (gesture.VelocityX * Time.deltaTime * MoveSpeed);
-                playerBody.linearVelocity = velocity;
+                playerBody.velocity = velocity;
             }
         }
 
@@ -186,19 +186,19 @@ namespace DigitalRubyShared
                 if (FindIntersectingPlatform() != null)
                 {
                     // jump, touching a platform
-                    Vector2 velocity = playerBody.linearVelocity;
+                    Vector2 velocity = playerBody.velocity;
                     velocity.y = JumpForce;
-                    playerBody.linearVelocity = velocity;
+                    playerBody.velocity = velocity;
                 }
             }
         }
 
         private void FixedUpdate()
         {
-            Vector2 velocity = playerBody.linearVelocity;
+            Vector2 velocity = playerBody.velocity;
             velocity.x = Mathf.Clamp(velocity.x, -MaxSpeed, MaxSpeed);
             velocity.y = Mathf.Clamp(velocity.y, -MaxSpeed, MaxSpeed);
-            playerBody.linearVelocity = velocity;
+            playerBody.velocity = velocity;
         }
     }
 }

@@ -44,7 +44,7 @@ namespace TestAmanotes
             }
             var distance = Math.Abs(tapPos.y -
                 NoteSpawnerManager.Instance.TapLineTransform.position.y);
-            Debug.Log("Tap Pos:" + tapPos + " Tap Line Pos:" + NoteSpawnerManager.Instance.TapLineTransform.position + " Distance:" + distance);
+            // Debug.Log("Tap Pos:" + tapPos + " Tap Line Pos:" + NoteSpawnerManager.Instance.TapLineTransform.position + " Distance:" + distance);
             if (distance < _gameConfig.ThresholdPerfect)
                 return (_gameConfig.PerfectScore + BonusScore, ScoreManager.ScoreType.Perfect);
             if (distance < _gameConfig.ThresholdNormal)

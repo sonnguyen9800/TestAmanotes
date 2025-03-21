@@ -103,7 +103,6 @@ namespace TestAmanotes
         {
             if (((1 << other.gameObject.layer) & _layerToTap) != 0)
             {
-                Debug.Log("Note is tappable");
                 _tapable = true;
                 _timeAtStart = Time.time;
             }

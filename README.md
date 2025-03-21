@@ -78,9 +78,10 @@ Below are a gif to illustrate how gameplay takes place:
 - **Unity 2021.3 LTS** - Unity Game Engine
 - **TextMeshPro** - Advanced text rendering for UI elements
 - **Dotween** - For background music and sound effects
+- **Fingers** - For gesture detection
 - **Melanchall.DryWetMidi** to process MIDI format. Link: https://github.com/melanchall/drywetmidi
 - **Nightpool** for object pooling. Link: https://github.com/MeeXaSiK/NightPool
 - **SisyphusFramework**: Custom framework. Link https://github.com/sonnguyen9800/Sisyphus-UniFramework
   
 ## Platform Support
-The project is configured to run on Unity Editor only
+The project is ensured to run on Unity Editor. Android or PC build is **not** tested!

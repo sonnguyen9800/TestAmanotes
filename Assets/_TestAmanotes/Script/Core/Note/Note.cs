@@ -89,9 +89,21 @@ namespace TestAmanotes
             double timeSinceInstantiated = SongManager.GetAudioSourceTime() - _timeInstantiated;
             float t = (float)(timeSinceInstantiated / (SongManager.Instance.noteTime * 2));
 
-
-            transform.localPosition = Vector3.Lerp(Vector3.up * _initialY,
-                Vector3.up * _targetPos.y, t); 
+            if (!_tapable)
+            {
+                transform.position = Vector3.Lerp(
+                    new Vector3(transform.position.x, _initialY, transform.position.z), 
+                    new Vector3(transform.position.x, _targetPos.y + _config.NoteEndPointCalibrate, transform.position.z), 
+                    t
+                );
+            }
+            else
+            {
+                transform.localPosition += Vector3.down * _speedFall * Time.deltaTime;
+            }
+            //
+            // transform.localPosition = Vector3.Lerp(Vector3.up * _initialY,
+            //     Vector3.up * _targetPos.y, t); 
 
             // transform.localPosition += Vector3.down * _speedFall * Time.deltaTime;
 

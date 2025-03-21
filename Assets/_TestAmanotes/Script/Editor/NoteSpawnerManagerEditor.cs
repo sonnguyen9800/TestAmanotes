@@ -17,11 +17,11 @@ public class NoteSpawnerManagerEditor : Editor
         // Create a button
         if (GUILayout.Button("Drop note (normal)"))
         {
-            script.SpawnNote(Define.NoteType.Normal);
+           script.SpawnNoteDefault(Define.NoteType.Normal);
         }
         if (GUILayout.Button("Drop note (large)"))
         {
-            script.SpawnNote(Define.NoteType.Large);
+            script.SpawnNoteDefault(Define.NoteType.Large);
         }
     }
 }

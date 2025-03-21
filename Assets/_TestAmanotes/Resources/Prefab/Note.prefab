@@ -176,9 +176,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 825cab76055b8a146ab41a199a80d01a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _config: {fileID: 11400000, guid: e573723cf8b819341be59735c898e995, type: 2}
   _childNoteTiles:
   - {fileID: 444760847319240070}
-  fallSpeed: 15
   _layerToTap:
     serializedVersion: 2
     m_Bits: 128

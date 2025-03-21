@@ -14,9 +14,7 @@ namespace TestAmanotes
 {
     public class NoteSpawnerManager : MonoSingleton<NoteSpawnerManager>
     {
-        public Melanchall.DryWetMidi.MusicTheory.NoteName noteRestriction;
-
-        public List<double> timeStamps = new List<double>();
+        public Dictionary<NoteName,List<double>> timeStamps = new();
 
         [SerializeField] private Transform _gridTransform = null;
         [SerializeField] private Tilemap _gameTileMap;
@@ -29,13 +27,14 @@ namespace TestAmanotes
         [SerializeField] private ObjectPool _notePools;
         [SerializeField] private NoteTapLine _tapLine;
         
+        HashSet<NoteName> _noteNames = new HashSet<NoteName>();
         public Transform TapLineTransform {get => _tapLine.transform;}
 
         [SerializeField]
-        public List<Vector3> SpawnerPos => _cachedSpawnerPos.ToList();
+        public List<Vector3> SpawnerPos => _cachedSpawnerPos;
 
-        private HashSet<Vector3> _cachedSpawnerPos = new();
-
+        private List<Vector3> _cachedSpawnerPos = new();
+        Dictionary<NoteName, Vector3> _noteLine = new();
         private bool _didSetup = false;
         private bool _start = false;
 
@@ -52,23 +51,9 @@ namespace TestAmanotes
                 return;
             SetupSpawnerPosition();
             _didSetup = true;
+            _spawnedIndex = new();
         }
 
-        public Vector3 GetValidSpawnerPos(Define.NoteType type)
-        {
-            foreach (var pos in _cachedSpawnerPos)
-            {
-                return pos;
-            }
-            return Vector3.zero;
-        }
-
-        private bool IsPositionFitNote(Note note, Vector3 pos)
-        {
-            HashSet<Vector3> allPositionOfNote = note.GetAllPosition();
-            
-            return false;
-        }
         private void SetupSpawnerPosition()
         {
              _cachedSpawnerPos = new();
@@ -109,23 +94,35 @@ namespace TestAmanotes
             tileNoteBehavior.Setup(cellPosition);
         }
         
-        public void SetTimeStamps(Melanchall.DryWetMidi.Interaction.Note[] array)
+        public void SetTimeStamps(Melanchall.DryWetMidi.Interaction.Note[] array, List<NoteName> topFour)
         {
+            _noteNames = new HashSet<NoteName>(topFour);
+            int i = 0;
+            foreach (var note in _noteNames)
+            {
+                timeStamps[note] = new List<double>();
+                _spawnedIndex[note] = 0;
+                _noteLine[note] = _cachedSpawnerPos[i];
+                i++;
+            }
+
+            double time;
+            TimeSpan metricTimeSpan;
             foreach (var note in array)
             {
-                var metricTimeSpan = TimeConverter.ConvertTo<MetricTimeSpan>(note.Time, SongManager.midiFile.GetTempoMap());
-                timeStamps.Add((double)metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds + (double)metricTimeSpan.Milliseconds / 1000f);
-                //
-                // if (note.NoteName == noteRestriction)
-                // {
-                //
-                // }
-         
+                if (!_noteNames.Contains(note.NoteName))
+                    continue;
+                
+                metricTimeSpan = TimeConverter.ConvertTo<MetricTimeSpan>(note.Time, SongManager.midiFile.GetTempoMap());
+                time = metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds +
+                       (double)metricTimeSpan.Milliseconds / 1000f;
+                timeStamps[note.NoteName].Add(time);
+                
             }
         }
-        public void SpawnNote(Define.NoteType normal)
+        public void SpawnNote(Define.NoteType normal, NoteName name)
         {
-            var pos = GetValidSpawnerPos(normal);
+            var pos = _noteLine[name];
             if (pos == Vector3.zero)
             {
                 Debug.LogError("No valid slot to spawn");
@@ -139,20 +136,26 @@ namespace TestAmanotes
         {
             _notePools.DespawnToPool(otherGameObject.tag, otherGameObject);
         }
+
+        private Dictionary<NoteName, int> _spawnedIndex= new();
         int spawnIndex = 0;
 
         private void Update()
         {
             if (!_start)
                 return;
-            if (spawnIndex < timeStamps.Count)
+            foreach (var iter in timeStamps)
             {
-                if (SongManager.GetAudioSourceTime() >= timeStamps[spawnIndex] - SongManager.Instance.noteTime)
+                if (_spawnedIndex[iter.Key] < iter.Value.Count)
                 {
-                    SpawnNote(Define.NoteType.Normal);
-                    spawnIndex++;
+                    if (SongManager.GetAudioSourceTime() >= iter.Value[_spawnedIndex[iter.Key]] - SongManager.Instance.noteTime)
+                    {
+                        SpawnNote(Define.NoteType.Normal, iter.Key);
+                        _spawnedIndex[iter.Key]++;
+                    }
                 }
             }
+
         }
 
         public void StartSpawn()
@@ -163,6 +166,12 @@ namespace TestAmanotes
         public void StopSpawn()
         {
             _start = false;
+        }
+
+        public void SpawnNoteDefault(Define.NoteType large)
+        {
+            var note = _noteNames.First();
+            SpawnNote(large, note);
         }
     }
 }

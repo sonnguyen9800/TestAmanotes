@@ -6,6 +6,7 @@ using Melanchall.DryWetMidi.Interaction;
 using System.IO;
 using UnityEngine.Networking;
 using System;
+using System.Linq;
 using TestAmanotes;
 using UnityCommunity.UnitySingleton;
 
@@ -53,8 +54,12 @@ public class SongManager : MonoSingleton<SongManager>
         var array = new Melanchall.DryWetMidi.Interaction.Note[notes.Count];
         notes.CopyTo(array, 0);
 
+        var topFour = notes.GroupBy(a => a.NoteName)
+            .OrderByDescending(g => g.Count())
+            .Take(4).Select(a => a.Key).ToList();
+        
        // foreach (var lane in lanes) lane.SetTimeStamps(array);
-       NoteSpawnerManager.Instance.SetTimeStamps(array);
+       NoteSpawnerManager.Instance.SetTimeStamps(array, topFour);
         
     }
 

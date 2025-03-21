@@ -95,11 +95,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 825cab76055b8a146ab41a199a80d01a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _config: {fileID: 0}
   _childNoteTiles:
   - {fileID: 7508783982243035722}
   - {fileID: 8393596639291548219}
   - {fileID: 5767012353511498914}
-  fallSpeed: 43
   _layerToTap:
     serializedVersion: 2
     m_Bits: 128

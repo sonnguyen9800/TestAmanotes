@@ -20,3 +20,4 @@ MonoBehaviour:
   NormalScore: 100
   BadScore: 50
   BonusScore: 50
+  NoteEndPointCalibrate: -65

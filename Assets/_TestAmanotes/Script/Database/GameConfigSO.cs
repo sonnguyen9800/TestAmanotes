@@ -15,4 +15,6 @@ public class GameConfigSO : ScriptableObject
     public int NormalScore = 100;
     public int BadScore = 50;
     public int BonusScore = 50;
+    [Range(-100f, 100f)]
+    public float NoteEndPointCalibrate = 0.5f;
 }

@@ -1514,7 +1514,7 @@ MonoBehaviour:
   m_text: 'Score: 9999'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c24ea294485b4e24a9132751b9c554c5, type: 2}
-  m_sharedMaterial: {fileID: 1286116019925830325, guid: c24ea294485b4e24a9132751b9c554c5, type: 2}
+  m_sharedMaterial: {fileID: -5471286553730331013, guid: c24ea294485b4e24a9132751b9c554c5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1873,7 +1873,7 @@ MonoBehaviour:
   EnableMultiTouch: 1
   TreatMousePointerAsFinger: 1
   TreatMouseWheelAsFingers: 1
-  SimulateMouseWithTouches: 0
+  SimulateMouseWithTouches: 1
   ProcessUnityTouches: 1
   RequireControlKeyForMouseZoom: 1
   MouseDistanceInUnitsForScaleAndRotate: 1

@@ -45,10 +45,15 @@ Ensure you have [Unity](https://unity.com/) installed. This project was develope
 
 ### A. Running the Game
 
-1. Open the main game scene in Unity Editor
+1. Open the main game scene in Unity Editor. Find the scene at :
+   **Assets/_TestAmanotes/Scenes/SampleScene.unity**
+
+The scene should look like below:
+![alt text](image-1.png)   
 2. Click the **Play** button to start the game
 3. Use mouse clicks or touch input to tap on falling tiles
 4. Try to match the rhythm of the background music for better scores
+
 
 ### B. Game Features
 

@@ -55,18 +55,24 @@ Ensure you have [Unity](https://unity.com/) installed. This project was develope
 #### Scoring System
 - Points are awarded based on:
   - Accuracy of tile taps
-  - Timing with the music
   - Speed of response
 
 #### Visual Feedback
-- Particle effects appear on successful tile taps
-- Animations provide visual confirmation of hits
-- Dynamic background enhances the gaming experience
+- Text effect shows up to visualize your success. Your taps can be *perfect*, *great* or *good*
+- Tiles will change color to dark when tapped on.
+- Backgrounds with moving sprites for dreamy experience
 
 ### C. Game Showcase
 Below are a gif to illustrate how gameplay takes place:
 
 ![alt text](test.gif)
+
+## Third Party Assets
+
+- Debussy : Clair De lune (*MIDI* and .*ogg*)
+- Font: Musicals by Brain Eaters Font Co, link: https://www.dafont.com/musicals.font
+- Musician by Mocha Frappuccino, link: https://www.dafont.com/musician.font
+- SFX is collected in sample of LMMS software
 
 ## Packages In Use
 - **Unity 2021.3 LTS** - Unity Game Engine

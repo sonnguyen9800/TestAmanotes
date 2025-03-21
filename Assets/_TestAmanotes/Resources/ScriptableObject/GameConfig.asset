@@ -21,3 +21,5 @@ MonoBehaviour:
   BadScore: 50
   BonusScore: 50
   NoteEndPointCalibrate: -65
+  NoteLongFilter: 200
+  TimeSongPlayed: 40

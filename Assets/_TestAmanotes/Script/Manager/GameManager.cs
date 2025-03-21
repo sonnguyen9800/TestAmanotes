@@ -1,11 +1,13 @@
 using System;
+using System.Collections;
 using UnityCommunity.UnitySingleton;
 using UnityEngine;
 
 namespace TestAmanotes
 {
     public class GameManager : MonoSingleton<GameManager>
-    {
+    {    [SerializeField] private bool _runInFixedTime;
+
         [SerializeField] GameConfigSO _gameConfig;
         private void Start()
         {
@@ -35,6 +37,21 @@ namespace TestAmanotes
         {
             SongManager.Instance.PlayGame();
             NoteSpawnerManager.Instance.StartSpawn();
+            if (_runInFixedTime)
+                StartCoroutine(WaitAndCallFunction());
+        }
+        
+        private IEnumerator WaitAndCallFunction()
+        {
+            yield return new WaitForSeconds(_gameConfig.TimeSongPlayed);
+            // Call your function here
+            YourFunction();
+        }
+
+        private void YourFunction()
+        {
+            SongManager.Instance.StopSong();
+            NoteSpawnerManager.Instance.StopSpawn();
         }
     }
 }

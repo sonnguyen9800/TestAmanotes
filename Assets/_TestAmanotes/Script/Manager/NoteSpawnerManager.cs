@@ -13,6 +13,7 @@ namespace TestAmanotes
 {
     public class NoteSpawnerManager : MonoSingleton<NoteSpawnerManager>
     {
+        [SerializeField] private GameConfigSO _configSO = null;
         public Dictionary<NoteName,List<double>> timeStamps = new();
 
         private HashSet<double> _cachedTimeStamp = new();
@@ -112,7 +113,8 @@ namespace TestAmanotes
             {
                 if (!_noteNames.Contains(note.NoteName))
                     continue;
-                
+                if (note.Length < _configSO.NoteLongFilter)
+                    continue;
                 metricTimeSpan = TimeConverter.ConvertTo<MetricTimeSpan>(note.Time, SongManager.midiFile.GetTempoMap());
                 time = metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds +
                        (double)metricTimeSpan.Milliseconds / 1000f;
@@ -132,6 +134,8 @@ namespace TestAmanotes
                 return;
             }
 
+            //var prefab = _notePools.GetPrefabByTag(normal.ToString());
+            //Instantiate(prefab, pos, Quaternion.identity, _gridTransform);
             _notePools.SpawnFromPool(normal.ToString(), pos, _gridTransform, Quaternion.identity);
         }
 
@@ -169,6 +173,11 @@ namespace TestAmanotes
         public void StopSpawn()
         {
             _start = false;
+            _spawnedIndex.Clear();
+            foreach (var name in _noteNames)
+            {
+                _spawnedIndex[name] = 0;
+            }
         }
 
         public void SpawnNoteDefault(Define.NoteType large)

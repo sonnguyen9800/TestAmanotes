@@ -36,12 +36,20 @@ namespace TestAmanotes
           return data;
         }
 
+        private void Start()
+        {
+           // OnObjectSpawn();
+        }
+
         public void OnObjectSpawn()
         {
             _runable = true;
             _tapable = false;
             _tapped = false;
-            
+            foreach (var note in _spriteRenderers)
+            {
+                note.color = Color.white;
+            }
             
             _targetPos = transform.position;
             _targetPos.y = NoteSpawnerManager.Instance.TapLineTransform.position.y;
@@ -134,9 +142,7 @@ namespace TestAmanotes
             _tapped = true;
             foreach (var note in _spriteRenderers)
             {
-                note.DOColor(Color.yellow, 0.2f);
-                note.DOFade(0, 0.2f);
-
+                note.DOColor(Color.yellow, 0.0f);
             }
 
             float currentTime = Time.time;

@@ -7,6 +7,7 @@ using System.IO;
 using UnityEngine.Networking;
 using System;
 using System.Linq;
+using DG.Tweening;
 using TestAmanotes;
 using UnityCommunity.UnitySingleton;
 
@@ -18,7 +19,6 @@ public class SongManager : MonoSingleton<SongManager>
     public double marginOfError; // in seconds
 
     public int inputDelayInMilliseconds;
-    
 
     public string fileLocation;
     public float noteTime = 1;
@@ -70,7 +70,16 @@ public class SongManager : MonoSingleton<SongManager>
     }
     public void StartSong()
     {
+        audioSource.DOFade(1, 0);
         audioSource.Play();
+    }
+
+    public void StopSong()
+    {
+        audioSource.DOFade(0, 1.2f).OnComplete(() =>
+        {
+            audioSource.Stop();
+        });
     }
     public static double GetAudioSourceTime()
     {

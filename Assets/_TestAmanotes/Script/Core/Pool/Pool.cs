@@ -23,6 +23,18 @@ namespace TestAmanotes
         public List<Pool> pools;
         private Dictionary<string, Queue<GameObject>> poolDictionary;
 
+        public GameObject GetPrefabByTag(string tag)
+        {
+            foreach (var pool in pools)
+            {
+                if (pool.tag == tag)
+                {
+                    return pool.prefab;
+                }
+            }
+
+            return null;
+        }
         private void Start()
         {
             poolDictionary = new Dictionary<string, Queue<GameObject>>();

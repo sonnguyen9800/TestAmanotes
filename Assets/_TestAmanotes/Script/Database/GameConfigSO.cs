@@ -17,4 +17,8 @@ public class GameConfigSO : ScriptableObject
     public int BonusScore = 50;
     [Range(-100f, 100f)]
     public float NoteEndPointCalibrate = 0.5f;
+    [Range(0f, 5000f)]
+    public float NoteLongFilter = 0.5f;
+
+    [Range(5, 50)] public float TimeSongPlayed;
 }

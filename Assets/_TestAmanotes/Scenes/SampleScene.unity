@@ -507,8 +507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 899defec7e6142e7ad2f99c91835bff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noteRestriction: 2
-  timeStamps: []
+  _configSO: {fileID: 11400000, guid: e573723cf8b819341be59735c898e995, type: 2}
   _gridTransform: {fileID: 137465410}
   _gameTileMap: {fileID: 2066764707}
   _db: {fileID: 11400000, guid: d6e498c944c85d04f9eafde214d584b1, type: 2}
@@ -555,6 +554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c251586e35f24ad9a7335ea719cb63e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _runInFixedTime: 0
   _gameConfig: {fileID: 11400000, guid: e573723cf8b819341be59735c898e995, type: 2}
 --- !u!114 &676897745
 MonoBehaviour:
@@ -846,7 +846,7 @@ Transform:
   m_GameObject: {fileID: 1809073162}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: -6.8, z: 0}
+  m_LocalPosition: {x: 0.5, y: 3.61, z: 0}
   m_LocalScale: {x: 9.8, y: 9.8, z: 2.433233}
   m_ConstrainProportionsScale: 1
   m_Children: []

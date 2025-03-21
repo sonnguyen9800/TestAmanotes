@@ -20,6 +20,7 @@ namespace TestAmanotes
         private HashSet<SpriteRenderer> _spriteRenderers = new();
         private double _timeInstantiated;
         private float _initialY;
+        [SerializeField]
         private float _speedFall = 0;
         private void Awake()
         {
@@ -49,8 +50,9 @@ namespace TestAmanotes
             _initialY = transform.position.y;
             _timeInstantiated = SongManager.GetAudioSourceTime();
             
-            CalculateSpeed();
+            //CalculateSpeed();
             _spriteRenderers.ToList().ForEach(a => a.color = Color.white);
+            
             
         }
 
@@ -61,6 +63,8 @@ namespace TestAmanotes
             _tapped = false;
             _timeAtStart = 0;
             _timeInstantiated = 0;
+            
+            
         }
 
 
@@ -81,31 +85,34 @@ namespace TestAmanotes
             }
 
         }
-
+        float fallSpeedInstant = 0;
+        float previousY = 0;
+        private float t;
+        private double timeSinceInstantiated;
         private void Update()
         {
             if (!_runable)
                 return;
-            double timeSinceInstantiated = SongManager.GetAudioSourceTime() - _timeInstantiated;
-            float t = (float)(timeSinceInstantiated / (SongManager.Instance.noteTime * 2));
+            timeSinceInstantiated = SongManager.GetAudioSourceTime() - _timeInstantiated;
+            t = (float)(timeSinceInstantiated / (SongManager.Instance.noteTime * 2));
 
+            transform.position = Vector3.Lerp(
+                new Vector3(transform.position.x, _initialY, transform.position.z), 
+                new Vector3(transform.position.x, _targetPos.y + _config.NoteEndPointCalibrate, transform.position.z), 
+                t
+            );
+            
             if (!_tapable)
             {
-                transform.position = Vector3.Lerp(
-                    new Vector3(transform.position.x, _initialY, transform.position.z), 
-                    new Vector3(transform.position.x, _targetPos.y + _config.NoteEndPointCalibrate, transform.position.z), 
-                    t
-                );
-            }
-            else
-            {
-                transform.localPosition += Vector3.down * _speedFall * Time.deltaTime;
-            }
-            //
-            // transform.localPosition = Vector3.Lerp(Vector3.up * _initialY,
-            //     Vector3.up * _targetPos.y, t); 
 
-            // transform.localPosition += Vector3.down * _speedFall * Time.deltaTime;
+                // _speedFall = (previousY - transform.position.y ) / Time.deltaTime;
+                // previousY = transform.position.y;
+            }
+            // else
+            // {
+            //     transform.localPosition += Vector3.down * (_speedFall * Time.deltaTime);
+            //
+            // }
 
         }
 

@@ -5,7 +5,6 @@ using _TestAmanotes.Script;
 using Melanchall.DryWetMidi.Interaction;
 using Melanchall.DryWetMidi.MusicTheory;
 using TestAmanotes.Core;
-using Unity.VisualScripting;
 using UnityCommunity.UnitySingleton;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -16,6 +15,7 @@ namespace TestAmanotes
     {
         public Dictionary<NoteName,List<double>> timeStamps = new();
 
+        private HashSet<double> _cachedTimeStamp = new();
         [SerializeField] private Transform _gridTransform = null;
         [SerializeField] private Tilemap _gameTileMap;
 
@@ -116,7 +116,10 @@ namespace TestAmanotes
                 metricTimeSpan = TimeConverter.ConvertTo<MetricTimeSpan>(note.Time, SongManager.midiFile.GetTempoMap());
                 time = metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds +
                        (double)metricTimeSpan.Milliseconds / 1000f;
+                if (_cachedTimeStamp.Contains(time))
+                    continue;
                 timeStamps[note.NoteName].Add(time);
+                _cachedTimeStamp.Add(time);
                 
             }
         }

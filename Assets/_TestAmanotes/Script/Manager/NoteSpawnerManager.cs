@@ -75,12 +75,12 @@ namespace TestAmanotes
                     if (_db.IsTileSpawner(tile))
                     {
                         _cachedSpawnerPos.Add(_gameTileMap.GetCellCenterWorld(cellPosition));
-                        SpawnTileNote(tile, cellPosition);
+                        //SpawnTileNote(tile, cellPosition);
 
                     }
                     else if (_db.IsTileNormalNote(tile))
                     {
-                        SpawnTileNote(tile, cellPosition);
+                        //SpawnTileNote(tile, cellPosition);
                     }
                 }
             }
@@ -96,7 +96,7 @@ namespace TestAmanotes
             tileNoteBehavior.Setup(cellPosition);
         }
         
-        public void SetTimeStamps(Melanchall.DryWetMidi.Interaction.Note[] array, List<NoteName> topFour)
+        public void SetTimeStamps_legacy(Melanchall.DryWetMidi.Interaction.Note[] array, List<NoteName> topFour)
         {
             _noteNames = new HashSet<NoteName>(topFour);
             int i = 0;
@@ -114,7 +114,7 @@ namespace TestAmanotes
             {
                 if (!_noteNames.Contains(note.NoteName))
                     continue;
-                if (note.Length < _configSO.NoteLongFilter)
+                if (note.Length < _configSO.MinNoteInterval)
                     continue;
                 metricTimeSpan = TimeConverter.ConvertTo<MetricTimeSpan>(note.Time, SongManager.midiFile.GetTempoMap());
                 time = metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds +
@@ -126,6 +126,48 @@ namespace TestAmanotes
                 
             }
         }
+        
+        
+        public void SetTimeStamps(Melanchall.DryWetMidi.Interaction.Note[] array, List<NoteName> topFour)
+        {
+            _noteNames = new HashSet<NoteName>(topFour);
+            int i = 0;
+            foreach (var note in _noteNames)
+            {
+                timeStamps[note] = new List<double>();
+                _spawnedIndex[note] = 0;
+                _noteLine[note] = _cachedSpawnerPos[i];
+                i++;
+            }
+
+            double time;
+            TimeSpan metricTimeSpan;
+            Dictionary<NoteName, double> lastNoteTime = new Dictionary<NoteName, double>();
+
+            double minNoteInterval = _configSO.MinNoteInterval; // Minimum time interval between two consecutive notes (adjust as needed)
+
+            foreach (var note in array)
+            {
+                if (!_noteNames.Contains(note.NoteName))
+                    continue;
+                metricTimeSpan = TimeConverter.ConvertTo<MetricTimeSpan>(note.Time, SongManager.midiFile.GetTempoMap());
+                time = metricTimeSpan.Minutes * 60f + metricTimeSpan.Seconds +
+                       (double)metricTimeSpan.Milliseconds / 1000f;
+
+                if (_cachedTimeStamp.Contains(time))
+                    continue;
+
+                // Check if the note is too close to the last one
+                if (lastNoteTime.ContainsKey(note.NoteName) && time - lastNoteTime[note.NoteName] < minNoteInterval)
+                    continue;
+
+                timeStamps[note.NoteName].Add(time);
+                _cachedTimeStamp.Add(time);
+                lastNoteTime[note.NoteName] = time; // Update last note time
+            }
+        }
+
+        
         public void SpawnNote(Define.NoteType normal, NoteName name)
         {
             var pos = _noteLine[name];

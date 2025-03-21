@@ -75,27 +75,7 @@ namespace TestAmanotes
             
             
         }
-
-
-        private void CalculateSpeed()
-        {
-            double timeSinceInstantiated = SongManager.GetAudioSourceTime() - _timeInstantiated;
-            float t = (float)(timeSinceInstantiated / (SongManager.Instance.noteTime * 2));
-            
-            float totalLerpTime = SongManager.Instance.noteTime * 2;
-            Vector3 startPos = new Vector3(transform.position.x, _initialY, transform.position.z);
-            Vector3 targetPos = new Vector3(transform.position.x, _targetPos.y, transform.position.z);
-            if (t == 0)
-                _speedFall = 0;
-            else
-            {
-                _speedFall = Vector3.Distance(startPos, targetPos) / t;
-
-            }
-
-        }
-        float fallSpeedInstant = 0;
-        float previousY = 0;
+        
         private float t;
         private double timeSinceInstantiated;
         private void Update()
@@ -111,18 +91,12 @@ namespace TestAmanotes
                 t
             );
             
-            if (!_tapable)
-            {
 
-                // _speedFall = (previousY - transform.position.y ) / Time.deltaTime;
-                // previousY = transform.position.y;
-            }
-            // else
-            // {
-            //     transform.localPosition += Vector3.down * (_speedFall * Time.deltaTime);
-            //
-            // }
+        }
 
+        private void OnMouseDown()
+        {
+            OnTap();
         }
 
         private void OnTriggerEnter2D(Collider2D other)

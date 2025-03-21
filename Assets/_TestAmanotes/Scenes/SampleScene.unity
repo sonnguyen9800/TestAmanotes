@@ -719,10 +719,8 @@ MonoBehaviour:
   pools:
   - tag: Normal
     prefab: {fileID: 444760847319240070, guid: 778adcceadb1d364d9959985b88a2ff7, type: 3}
-    size: 10
   - tag: Large
     prefab: {fileID: 3464764227190627614, guid: 35a56ce817444a84f98e3dbc0242b9cd, type: 3}
-    size: 10
 --- !u!114 &867107023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -736,7 +734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _updateType: 0
-  preloadPoolsType: 1
+  preloadPoolsType: 0
   poolsPreset: {fileID: 0}
   _behaviourOnCapacityReached: 2
   _despawnType: 2

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "GameConfig", menuName = "Scriptable Objects/GameConfig")]
 public class GameConfigSO : ScriptableObject
@@ -17,8 +18,8 @@ public class GameConfigSO : ScriptableObject
     public int BonusScore = 50;
     [Range(-100f, 100f)]
     public float NoteEndPointCalibrate = 0.5f;
-    [Range(0f, 5000f)]
-    public float NoteLongFilter = 0.5f;
+    [Range(0, 1.0f)]
+    public float MinNoteInterval = 0.2f;
 
     [Range(5, 50)] public float TimeSongPlayed;
 }

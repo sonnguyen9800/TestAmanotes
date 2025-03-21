@@ -9,6 +9,8 @@ EditorBuildSettings:
     path: Assets/_TestAmanotes/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   m_configObjects:
+    com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: 322c166c1df7f9a4192ef76792a3477f, type: 2}
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: c2f6494198bd2f841945f6e0b3b622c7, type: 2}
+    com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: daacb4c363f2bf0489281bdb02fdd312, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 3ae0c4b53cc23f04ba5c42f60c825756, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  m_UseUCBPForAssetBundles: 0

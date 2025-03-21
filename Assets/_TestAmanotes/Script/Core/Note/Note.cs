@@ -119,14 +119,10 @@ namespace TestAmanotes
             {
                 note.DOColor(Color.yellow, 0.0f);
             }
-
-            var mousePos = Input.mousePosition;
-
             float currentTime = Time.time;
             var (score, type) = GameManager.Instance.CalculateScore(gameObject.transform.position, currentTime - _timeAtStart);
             ScoreManager.Instance.AddScore(score);
             GameManager.Instance.SpawnText(type, transform.position);
-           // GameManager.Instance.SpawnTextMousePos(type, mousePos);
 
         }
 

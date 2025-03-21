@@ -13,6 +13,7 @@ using UnityCommunity.UnitySingleton;
 
 public class SongManager : MonoSingleton<SongManager>
 {
+    public Action OnLoadComplete = null;
     public AudioSource audioSource;
    // public Lane[] lanes;
     public float songDelayInSeconds;
@@ -36,8 +37,9 @@ public class SongManager : MonoSingleton<SongManager>
     public static MidiFile midiFile;
     // Start is called before the first frame update
 
-    public void Setup()
+    public void Setup(Action action)
     {
+        OnLoadComplete += action;
         ReadFromFile();
     }
     
@@ -60,6 +62,7 @@ public class SongManager : MonoSingleton<SongManager>
         
        // foreach (var lane in lanes) lane.SetTimeStamps(array);
        NoteSpawnerManager.Instance.SetTimeStamps(array, topFour);
+       OnLoadComplete?.Invoke();
         
     }
 
@@ -86,4 +89,5 @@ public class SongManager : MonoSingleton<SongManager>
         return (double)Instance.audioSource.timeSamples / Instance.audioSource.clip.frequency;
     }
 
+    
 }

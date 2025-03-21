@@ -20,7 +20,10 @@ namespace _TestAmanotes.Script.Editor
             {
                 script.StartGame();
             }
-
+            if (GUILayout.Button("Spawn Text (Random)"))
+            {
+                script.SpawnTextTest();
+            }
         }
     }
 }

@@ -14,15 +14,6 @@
       "dependencies": {},
       "hash": "fb0218774b66a8e3d99505c5eefda3ff8b41ba2d"
     },
-    "com.qiaozhilei.easy-text-effects": {
-      "version": "https://github.com/LeiQiaoZhi/Easy-Text-Effect.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {
-        "com.unity.ugui": "1.0.0"
-      },
-      "hash": "f75130c3713755ecbb29ec7d5caa909e0105d457"
-    },
     "com.sisyphuslab.sisyphusframework": {
       "version": "https://github.com/sonnguyen9800/Sisyphus-UniFramework.git",
       "depth": 0,

@@ -96,7 +96,7 @@ namespace TestAmanotes
 
         private void OnMouseDown()
         {
-            OnTap();
+            //OnTap();
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -120,9 +120,14 @@ namespace TestAmanotes
                 note.DOColor(Color.yellow, 0.0f);
             }
 
+            var mousePos = Input.mousePosition;
+
             float currentTime = Time.time;
-            int score = GameManager.Instance.CalculateScore(gameObject.transform.position, currentTime - _timeAtStart);
+            var (score, type) = GameManager.Instance.CalculateScore(gameObject.transform.position, currentTime - _timeAtStart);
             ScoreManager.Instance.AddScore(score);
+            GameManager.Instance.SpawnText(type, transform.position);
+           // GameManager.Instance.SpawnTextMousePos(type, mousePos);
+
         }
 
 

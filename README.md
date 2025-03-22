@@ -9,13 +9,15 @@ This is a Unity-based implementation of a simplified version of Magic Tiles 3 ga
 - [Features](#features)
 - [Setup Instructions](#setup-instructions)
 - [Testing the Project](#testing--gameplay)
+- [ThirdParty Assets](#third-party-assets)
 - [Packages in Use](#packages-in-use)
+- [Platform Support](#platform-support)
 
 ## Features
 - **Rhythm-Based Gameplay:** Tiles fall in sync with background music
 - **Interactive Controls:** Tap on falling tiles to score points
 - **Scoring System:** Points awarded based on accuracy and timing of tile taps
-- **Visual Feedback:** Particle effects and animations for successful tile taps
+- **Visual Feedback:** Text effects and animations for successful tile taps
 - **Dynamic Background:** Engaging visual experience with animated background
 
 ## Setup Instructions
@@ -72,6 +74,11 @@ Below are a gif to illustrate how gameplay takes place:
 
 ![alt text](test.gif)
 
+### D. Known Issue & Work arround
+
+If you cannot tap, this is likely because the **project definition** lacks important symbol. Make sure your define looks like below:
+
+![alt text](image-2.png)
 ## Third Party Assets
 
 - Debussy : Clair De lune (*MIDI* and .*ogg*)
